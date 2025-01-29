@@ -8,7 +8,7 @@ namespace MultipleModels.Models
     public class EmpDeptModel
     {
         public List<Employee> employees { get; set; }
-        public List<Dept> departments { get; set; }
+        public List<Dept> departmnet { get; set; }
         
     }
 }

@@ -35,4 +35,27 @@ namespace MultipleModels.Models
             }
             return employees;
         }
+        public List<Dept> GetDepartments()
+        {
+            List<Dept> depts = new List<Dept>();
+            using (SqlConnection con = new SqlConnection(_connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("select * from Dept", con);
+                con.Open();
+                SqlDataReader rdr = cmd.ExecuteReader();
+                if (rdr.HasRows)
+                {
+                    while (rdr.Read())
+                    {
+                        Dept dept = new Dept();
+                        dept.Deptno = Convert.ToInt32(rdr["Deptno"]);
+                        dept.dname = rdr["Deptname"].ToString();
+                        depts.Add(dept);
+                    }
+                }
+                con.Close();
+            }
+            return depts;
+        }
+    }
 }
